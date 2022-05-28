@@ -1,0 +1,4 @@
++TITLE: Dmth's dotfiles
+
+* Contents
+- AwesomeWM, - tile window manager configuration
