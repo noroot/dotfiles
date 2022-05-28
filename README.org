@@ -1,4 +1,8 @@
-+TITLE: Dmth's dotfiles
+#+TITLE: Dmth's dotfiles
 
 * Contents
 - AwesomeWM, - tile window manager configuration
+
+
+* License
+MIT - do what ever you want, and do not forget to add a backlink
