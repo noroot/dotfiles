@@ -464,7 +464,13 @@ globalkeys = mytable.join(
             os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
             beautiful.volume.update()
         end,
+        {description = "toggle mic mute", group = "hotkeys"}),
+   awful.key({ altkey }, "k",
+        function ()
+            os.execute("amixer set Capture toggle")
+        end,
         {description = "toggle mute", group = "hotkeys"}),
+
     awful.key({ altkey, "Control" }, "m",
         function ()
             os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
@@ -557,8 +563,11 @@ globalkeys = mytable.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
       {description = "show the menubar", group = "launcher"}),
 
-    awful.key({modkey, "Shift"}, "r", function() awful.util.spawn_with_shell("sleep 0.2 && gnome-screenshot -a") end,
-      {description = "Make screenshot with gnome-screenshot", group = "awesome"}),
+    awful.key({modkey, "Shift"}, "r", function() awful.util.spawn_with_shell("sleep 0.5 && gnome-screenshot -a") end,
+      {description = "Screeshot", group = "awesome"}),
+
+    awful.key({modkey, "Shift"}, "l", function() awful.util.spawn_with_shell("i3lock -c 000000") end,
+      {description = "Lock screen", group = "awesome"}),
 
 
     awful.key({ modkey }, "x",
