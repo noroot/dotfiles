@@ -119,6 +119,8 @@ theme.cal = lain.widget.cal({
     }
 })
 
+mkbl = awful.widget.keyboardlayout()
+mkbl.widget.font = "Terminus 12"
 -- Weather
 --[[ to be set before use
 local weathericon = wibox.widget.imagebox(theme.widget_weather)
@@ -376,6 +378,7 @@ function theme.at_screen_connect(s)
             temp.widget,
             baticon,
             bat.widget,
+            mkbl,
             clockicon,
             mytextclock,
             wibox.widget.systray(),
