@@ -8,6 +8,7 @@
 --  * Add screenshot binding keys
 --  * Change colors
 --  * Change tag names
+--  * Add log wallpaper https://wallhaven.cc/w/0jrerm
 
 -- Based on
 --
@@ -566,7 +567,7 @@ globalkeys = mytable.join(
     awful.key({modkey, "Shift"}, "r", function() awful.util.spawn_with_shell("sleep 0.5 && gnome-screenshot -a") end,
       {description = "Screeshot", group = "awesome"}),
 
-    awful.key({modkey, "Shift"}, "l", function() awful.util.spawn_with_shell("i3lock -c 000000") end,
+    awful.key({modkey, "Shift"}, "l", function() awful.util.spawn_with_shell("i3lock -i " .. string.format("%s/.config/awesome/themes/%s/lock.png", os.getenv("HOME"), chosen_theme) ) end,
       {description = "Lock screen", group = "awesome"}),
 
 

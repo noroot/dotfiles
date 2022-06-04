@@ -201,6 +201,7 @@ theme.mail = lain.widget.imap({
 --         end
 -- })
 
+
 local vpn_on = awful.widget.watch(
     'bash -c "nmcli con show --active | grep vpn | cut -f1 -d\' \'"', 30,
     function(widget, stdout)
