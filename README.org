@@ -4,5 +4,8 @@
 - AwesomeWM, - tile window manager configuration
 
 
+* Links
+How to manage your dotfiles with git https://falsetrue.io/howto/2022/06/05/dotfiles/
+
 * License
 MIT - do what ever you want, and do not forget to add a backlink
