@@ -26,7 +26,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/omthawe"
-theme.wallpaper                                 = theme.confdir .. "/wall.png"
+theme.wallpaper                                 = theme.confdir .. "/wall-8.png"
 theme.font                                      = "Terminus 12"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
@@ -101,12 +101,16 @@ theme.titlebar_maximized_button_focus_inactive  = theme.confdir .. "/icons/title
 theme.titlebar_maximized_button_normal_active   = theme.confdir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/titlebar/maximized_focus_active.png"
 
+
+-- Widget colors
+theme.memory_color = "#ab7367"
+
 local markup = lain.util.markup
 
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#ab7367", ">") .. markup("#de5e1e", " %H:%M "))
+local mytextclock = wibox.widget.textclock(markup("#88eeaf", "%A %d %B ") .. markup("#ab7367", ">") .. markup("#ab7367", " %H:%M "))
 mytextclock.font = theme.font
 
 -- Calendar
@@ -274,7 +278,7 @@ local netupinfo = lain.widget.net({
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local memory = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_now.used .. "M "))
+        widget:set_markup(markup.fontfg(theme.font, theme.memory_color, mem_now.used .. "M "))
     end
 })
 
@@ -365,8 +369,6 @@ function theme.at_screen_connect(s)
             netdowninfo,
             netupicon,
             netupinfo.widget,
-            volicon,
-            theme.volume.widget,
             memicon,
             memory.widget,
             cpuicon,
@@ -379,6 +381,8 @@ function theme.at_screen_connect(s)
             temp.widget,
             baticon,
             bat.widget,
+            volicon,
+            theme.volume.widget,
             mkbl,
             clockicon,
             mytextclock,

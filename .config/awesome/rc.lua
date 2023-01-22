@@ -1,5 +1,6 @@
 --[[
     OmthAwe theme
+--
     NOTE:
 --  * Removed bottom taskbar
 --  * Removed window titlebar
@@ -10,10 +11,10 @@
 --  * Change tag names
 --  * Add log wallpaper https://wallhaven.cc/w/0jrerm
 
--- Based on
---
-     Awesome WM configuration template
-     github.com/lcpz
+-- Credits
+
+  Awesome WM configuration template
+  github.com/lcpz
 
 --]]
 
@@ -98,7 +99,7 @@ awful.spawn.with_shell(
 -- {{{ Variable definitions
 
 local themes = {
-    "omthawe",       -- 1
+    "omthawe2",       -- 1
 }
 
 local chosen_theme = themes[1]
@@ -111,7 +112,7 @@ local editor       = os.getenv("EDITOR") or "nvim"
 local browser      = "librewolf"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "term", "emacs", "web", "mail", "im", "docs", "other" }
+awful.util.tagnames = { "term", "emacs", "web", "mail", "im", "docs", "other", "stats" }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -202,7 +203,7 @@ awful.util.mymainmenu = freedesktop.menu.build {
 }
 
 -- Hide the menu when the mouse leaves it
---[[
+--
 awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
     if not awful.util.mymainmenu.active_child or
        (awful.util.mymainmenu.wibox ~= mouse.current_wibox and
@@ -217,7 +218,7 @@ awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
         end)
     end
 end)
---]]
+--
 
 -- Set the Menubar terminal for applications that require it
 --menubar.utils.terminal = terminal
@@ -340,8 +341,8 @@ globalkeys = mytable.join(
         {description = "focus right", group = "client"}),
 
     -- Menu
-    awful.key({ modkey,           }, "w", function () awful.util.mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
+    --awful.key({ modkey,           }, "w", function () awful.util.mymainmenu:show() end,
+      --        {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -448,13 +449,13 @@ globalkeys = mytable.join(
               {description = "-10%", group = "hotkeys"}),
 
     -- ALSA volume control
-    awful.key({ altkey }, "Up",
+    awful.key({}, "XF86AudioRaiseVolume",
         function ()
             os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
             beautiful.volume.update()
         end,
         {description = "volume up", group = "hotkeys"}),
-    awful.key({ altkey }, "Down",
+    awful.key({}, "XF86AudioLowerVolume",
         function ()
             os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
             beautiful.volume.update()
@@ -549,12 +550,12 @@ globalkeys = mytable.join(
     --[[ -]]
     -- alternatively use rofi, a dmenu-like application with more features
     -- check https://github.com/DaveDavenport/rofi for more details
-    --[[ rofi
-    awful.key({ modkey }, "x", function ()
-            os.execute(string.format("rofi -show %s -theme %s",
-            'run', 'dmenu'))
-        end,
-        {description = "show rofi", group = "launcher"}),
+    --[[ rofi ]]
+    -- awful.key({ modkey }, "x", function ()
+    --         os.execute(string.format("rofi -show %s -theme %s",
+    --         'run', 'purple'))
+    --     end,
+    --     {description = "show rofi", group = "launcher"}),
     --]]
     -- Prompt
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
@@ -569,6 +570,14 @@ globalkeys = mytable.join(
 
     awful.key({modkey, "Shift"}, "l", function() awful.util.spawn_with_shell("i3lock -i " .. string.format("%s/.config/awesome/themes/%s/lock.png", os.getenv("HOME"), chosen_theme) ) end,
       {description = "Lock screen", group = "awesome"}),
+
+
+    -- Rofi
+    --
+    awful.key({ modkey }, "w", function ()
+        awful.util.spawn_with_shell("rofi -show window")
+    end,
+      {description = "rofi run", group = "launcher"}),
 
 
     awful.key({ modkey }, "x",
@@ -756,9 +765,6 @@ awful.rules.rules = {
       }, properties = { titlebars_enabled = false }
     },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    --
-
     { rule = { class = "urxvt" },
       properties = { screen = 1, tag = "term" } },
 
@@ -780,6 +786,11 @@ awful.rules.rules = {
        properties = { screen = 1, tag = "im" } },
     { rule = { class = "Libreoffice" },
        properties = { screen = 1, tag = "docs" } },
+
+    { rule = { class = "Conky" },
+       properties = { screen = 1, tag = "stats" } },
+
+
 
 }
 
@@ -857,3 +868,14 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- }}}
+
+
+awful.util.spawn_with_shell(
+  "setxkbmap -model pc106 -layout us,ru -option grp:alt_space_toggle;" ..
+  "picom -b;"
+  --"killall -9 conky;" ..
+  --"conky;"
+  --"picom -b;"
+
+)
+-- "xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &")
