@@ -274,7 +274,7 @@ theme.mpd = lain.widget.mpd({
 })
 
 local systray = wibox.widget.systray()
-systray:set_base_size(19)
+systray:set_base_size(26)
 
 function theme.at_screen_connect(s)
     -- Quake application
@@ -317,6 +317,47 @@ function theme.at_screen_connect(s)
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
+
+
+
+    -- s.mytasklist = awful.widget.tasklist {
+    --     screen   = s,
+    --     filter   = awful.widget.tasklist.filter.currenttags,
+    --     buttons  = awful.util.tasklist_buttons,
+    --     layout   = {
+    --         spacing_widget = {
+    --             {
+    --                 forced_width  = 5,
+    --                 forced_height = 24,
+    --                 thickness     = 1,
+    --                 color         = "#777777",
+    --                 widget        = wibox.widget.separator
+    --             },
+    --             valign = "center",
+    --             halign = "center",
+    --             widget = wibox.container.place,
+    --         },
+    --         spacing = 1,
+    --         layout  = wibox.layout.fixed.horizontal
+    --     },
+    --     -- Notice that there is *NO* wibox.wibox prefix, it is a template,
+    --     -- not a widget instance.
+    --     widget_template = {
+    --         {
+    --             wibox.widget.base.make_widget(),
+    --             forced_height = 5,
+    --             id            = "background_role",
+    --             widget        = wibox.container.background,
+    --         },
+    --         {
+    --             awful.widget.clienticon,
+    --             margins = 5,
+    --             widget  = wibox.container.margin
+    --         },
+    --         nil,
+    --         layout = wibox.layout.align.vertical,
+    --     },
+    -- }
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(29), bg = theme.bg_normal, fg = theme.fg_normal })

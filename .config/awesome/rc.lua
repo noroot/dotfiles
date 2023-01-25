@@ -461,7 +461,7 @@ globalkeys = mytable.join(
             beautiful.volume.update()
         end,
         {description = "volume down", group = "hotkeys"}),
-    awful.key({ altkey }, "m",
+    awful.key({ }, "XF86AudioMute",
         function ()
             os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
             beautiful.volume.update()
@@ -767,26 +767,20 @@ awful.rules.rules = {
 
     { rule = { class = "urxvt" },
       properties = { screen = 1, tag = "term" } },
-
     { rule = { class = "Emacs" },
       properties = { screen = 1, tag = "emacs" } },
-
-    { rule = { class = "Firefox" },
+    { rule = { class = "firefox" },
       properties = { screen = 1, tag = "web" } },
-
-    { rule = { class = "Brave" },
+    { rule = { class = "brave-browser" },
        properties = { screen = 1, tag = "web" } },
-
-    { rule = { class = "Thunderbird" },
+    { rule = { class = "thunderbird" },
        properties = { screen = 1, tag = "mail" } },
-
     { rule = { class = "Signal" },
        properties = { screen = 1, tag = "im" } },
     { rule = { class = "Element" },
        properties = { screen = 1, tag = "im" } },
     { rule = { class = "Libreoffice" },
        properties = { screen = 1, tag = "docs" } },
-
     { rule = { class = "Conky" },
        properties = { screen = 1, tag = "stats" } },
 
