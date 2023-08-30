@@ -40,3 +40,10 @@ alias myip="curl icanhazip.com"
 
 # Fun
 alias hacker_mode="cat /dev/urandom | hexdump -C | grep "ca fe""
+
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

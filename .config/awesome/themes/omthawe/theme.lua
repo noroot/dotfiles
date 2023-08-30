@@ -26,7 +26,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/omthawe"
-theme.wallpaper                                 = theme.confdir .. "/wall-8.png"
+theme.wallpaper                                 = theme.confdir .. "/f10.png"
 theme.font                                      = "Terminus 12"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"

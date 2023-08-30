@@ -448,6 +448,11 @@ globalkeys = mytable.join(
     awful.key({ }, "XF86MonBrightnessDown", function () os.execute("brightnessctl s 2%-") end,
               {description = "-10%", group = "hotkeys"}),
 
+
+    -- Calculator key bind
+    awful.key({ }, "XF86Calculator", function () awful.spawn.with_shell("gnome-calculator") end,
+              {description = "Run gnome calc", group = "hotkeys"}),
+
     -- ALSA volume control
     awful.key({}, "XF86AudioRaiseVolume",
         function ()
@@ -558,7 +563,12 @@ globalkeys = mytable.join(
     --     {description = "show rofi", group = "launcher"}),
     --]]
     -- Prompt
-    awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
+    awful.key({ modkey }, "r", function ()
+
+        awful.screen.focused().mypromptbox:run()
+        awful.spawn( "paplay /home/dmth/Downloads/prompt.wav")
+
+    end,
       {description = "run prompt", group = "launcher"}),
 
     -- Menubar
